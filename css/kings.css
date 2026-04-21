@@ -1,0 +1,350 @@
+:root {
+  --color-kings-bg: #F5EBDC;
+  --color-kings-title: #1A120B;
+  --color-kings-accent: #C99400;
+  --color-kings-card-bg: #0F0F0F;
+  --color-kings-card-text: #FFFFFF;
+}
+
+.kings-section {
+  background: var(--color-kings-bg);
+  min-height: 800px;
+  padding: 5rem 1rem 4rem;
+  width: 100vw;
+}
+
+.kings-section__inner {
+  max-width: 864px;
+  margin: 0 auto;
+}
+
+.kings-section__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.kings-section__title {
+  font-family: var(--font-display);
+  font-size: 128px;
+  line-height: 1;
+  letter-spacing: -2.5%;
+  color: var(--color-kings-title);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.kings-section__category {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 60px;
+  line-height: 1;
+  color: var(--color-kings-accent);
+  text-transform: uppercase;
+  letter-spacing: -5.33%;
+}
+
+.kings-grid {
+  display: grid;
+  grid-template-columns: 256px 320px 256px;
+  gap: 40px;
+  justify-content: center;
+  align-items: end;
+}
+
+.kings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  border-radius: 28px;
+  align-items: center;
+}
+
+.kings-card__label {
+  color: var(--color-kings-title);
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  width: auto;
+  max-width: 100%;
+}
+
+.kings-card__image {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-kings-card-bg);
+  border-radius: 24px;
+  
+}
+
+.kings-card__image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.kings-card--side .kings-card__image {
+  width: 256px;
+  height: 256px;
+  border-radius: 10px;
+}
+
+.kings-card--featured {
+  transform: translateY(16px);
+}
+
+.kings-card--featured .kings-card__image {
+  width: 320px;
+  height: 320px;
+  border-radius: 10px;
+  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.15);
+}
+
+.kings-section__dots {
+  display: none;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.kings-section__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #D3B04C;
+  opacity: 0.35;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.kings-section__dot--active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
+
+/* Kings Section Animations                     */
+/* ============================================ */
+
+/* Keyframes */
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Keyframe especial para o card central (mantendo o translateY original) */
+
+@keyframes titleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandInFeatured {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(16px) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Estados Iniciais (Invisíveis) */
+.kings-section__title,
+.kings-section__category,
+.kings-card {
+  opacity: 0;
+}
+
+/* Classes de Ativação via JS */
+.kings-section__title.animate {
+  animation: titleSlideUp 0.8s ease-out forwards;
+}
+
+.kings-section__category.animate {
+  animation: expandIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Card da Esquerda (Chicken) */
+.kings-grid article:nth-child(1).animate {
+  animation: slideInFromLeft 1s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+/* Card do Meio (Duplo Bacon) */
+.kings-grid article:nth-child(2).animate {
+  animation: expandInFeatured 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+/* Card da Direita (King Bacon) */
+.kings-grid article:nth-child(3).animate {
+  animation: slideInFromRight 2s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+@media (max-width: 1140px) {
+  .kings-grid {
+    grid-template-columns: 1fr 1.2fr 1fr;
+  }
+
+  .kings-card--side .kings-card__image,
+  .kings-card--featured .kings-card__image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .kings-section {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .kings-grid {
+    grid-template-columns: repeat(3, minmax(240px, 320px));
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.75rem;
+    justify-content: start;
+  }
+
+  .kings-card {
+    min-width: 240px;
+    scroll-snap-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .kings-card--featured {
+    transform: none;
+  }
+
+  .kings-card__image img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .kings-section__dots {
+    display: flex;
+  }
+}
+
+/* Responsivo para mobile 425px */
+@media (max-width: 425px) {
+  .kings-section {
+    padding: 2rem  1rem;
+    width: 100%;
+  }
+
+  .kings-section__inner {
+    max-width: 100%;
+  }
+
+  .kings-section__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .kings-section__title {
+    font-size: 64px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .kings-section__category {
+    font-size: 32px;
+    margin-bottom: 2rem;
+  }
+
+  .kings-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .kings-card, 
+  .kings-card--side, 
+  .kings-card--featured {
+    width: 100%;
+    max-width: 320px; /* Largura máxima igual para todos */
+    transform: none !important; /* Remove o desnível do card central */
+    padding: 1.5rem;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1 !important;
+  }
+
+  .kings-card__label {
+    font-size: 18px;
+    margin-bottom: 1rem;
+    order: -1;
+  }
+
+  .kings-card__image {
+    order: 2; /* Imagem embaixo */
+  }
+
+  .kings-card__image,
+  .kings-card--side .kings-card__image,
+  .kings-card--featured .kings-card__image {
+    width: 100% !important;
+    max-width: 260px !important; /* Tamanho visual da imagem */
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    background: transparent; /* Remove o fundo preto se desejar o card limpo */
+    margin: 0 auto;
+  }
+
+  .kings-card__image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: contain; /* Garante que o hambúrguer não seja cortado */
+  }
+}
