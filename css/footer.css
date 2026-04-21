@@ -1,0 +1,122 @@
+/* ============================================ */
+/* Footer                                       */
+/* ============================================ */
+
+.footer {
+  background: #1A0800;
+  padding: 3rem 1.25rem;
+  width: 100vw;
+}
+
+.footer__inner {
+  max-width: 1285px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ---- Logo ---- */
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #D62300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---- Link App ---- */
+.footer__app-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__app-link:hover {
+  color: #ffffff;
+}
+
+/* ---- Sociais ---- */
+.footer__socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer__social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.footer__social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer__social-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+/* ---- Disclaimer ---- */
+.footer__disclaimer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* Responsivo para mobile 425px */
+@media (max-width: 425px) {
+  .footer {
+    padding: 1rem;
+  }
+
+  .footer__inner {
+    gap: 0.875rem;
+  }
+
+  .footer__logo-text {
+    font-size: 0.9rem;
+  }
+
+  .footer__app-link {
+    font-size: 0.75rem;
+  }
+
+  .footer__social-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer__social-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .footer__disclaimer {
+    font-size: 0.7rem;
+    max-width: 100%;
+  }
+}

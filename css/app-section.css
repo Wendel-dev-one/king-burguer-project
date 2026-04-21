@@ -1,0 +1,204 @@
+/* ============================================ */
+/* App Section                                  */
+/* ============================================ */
+
+.app-section {
+  background: #3D1A0A;
+  padding: 5rem 3rem 4rem 3rem;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  min-height: 90vh;
+}
+
+.app-section__inner {
+  max-width: 1285px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* ---- Imagem ---- */
+.app-section__visual {
+  display: flex;
+  justify-content: center;
+}
+
+.app-section__visual img {
+  max-width: 320px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 48px;
+  border: 7px solid #000;
+}
+
+/* ---- Conteúdo ---- */
+.app-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 72px;
+  margin: 0;
+  width: 95%;
+}
+
+/* ---- Badges ---- */
+
+.app-section__badges {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.app-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #1A1A1A;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  max-width: 170px;
+}
+
+.app-badge:hover {
+  background: #2a2a2a;
+  transform: scale(1.04);
+}
+
+.app-badge__icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.app-badge__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.app-badge__label {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.app-badge__store {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* ---- Animação de Flutuação (Celular) ---- */
+@keyframes floatMobile {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.app-section__visual img {
+  max-width: 320px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 48px;
+  border: 7px solid #000;
+  /* Aplica a flutuação */
+  animation: floatMobile 4s ease-in-out infinite;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* ---- Animação de Piscar (Badges) ---- */
+@keyframes badgeGlow {
+  0% { border-color: rgba(255, 255, 255, 0.15); }
+  50% { border-color: rgba(255, 255, 255, 0.5); box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+  100% { border-color: rgba(255, 255, 255, 0.15); }
+}
+
+.app-badge {
+  position: relative;
+  overflow: hidden; /* Necessário para o efeito ripple */
+  animation: badgeGlow 3s infinite;
+}
+
+/* ---- Efeito Ripple (Onda) ao Clicar ---- */
+.ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ---- Entrada da Seção ---- */
+.app-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.app-section.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsivo para mobile 425px */
+@media (max-width: 425px) {
+  .app-section {
+    padding: 4rem 1rem 3rem;
+  }
+
+  .app-section__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .app-section__visual {
+    order: 1;
+  }
+
+  .app-section__content {
+    order: 2;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .app-section__title {
+    font-size: 3rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .app-section__badges {
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .app-badge {
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+  }
+}
