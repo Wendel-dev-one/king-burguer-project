@@ -1,0 +1,282 @@
+:root {
+    /* Ingredientes Premium */
+    --ingredients-bg: #F5F0E8;
+    --ingredients-title: #4B2114;
+    --ingredients-subtitle: #8B6758;
+    --ingredients-muted: #8B6758;
+    --ingredients-radius: 28px;
+    --ingredients-shadow: 0 16px 40px rgba(45, 26, 14, 0.08);
+    --ingredients-text: #ffffff;
+    --ingredients-info: rgba(255, 255, 255, 0.92);
+}
+
+.ingredients-section {
+    background-color: var(--ingredients-bg);
+    padding: 5rem 1.5rem;
+    width: 100vw;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ingredients-section__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.ingredients-section__title {
+    font-family: 'Titan One', cursive;
+    font-size: clamp(3rem, 4vw, 4.8rem);
+    line-height: 1.02;
+    color: var(--ingredients-title);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+}
+
+.ingredients-section__description {
+    max-width: 540px;
+    margin: 0 auto;
+    color: var(--ingredients-subtitle);
+    font-size: clamp(1rem, 1vw + 0.4rem, 1.15rem);
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.ingredient-card {
+    background-color: #fff;
+    border-radius: 28px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: var(--ingredients-shadow);
+    color: #fff;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ingredient-card__image {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1rem;
+}
+
+.ingredient-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ingredient-card__name {
+    font-family: "Titan One", sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 28px;
+    margin-bottom: 0.65rem;
+    text-transform: capitalize;
+}
+
+.ingredient-card__info {
+    font-size: 0.875rem;
+    line-height: 20px;
+    color: var(--ingredients-info);
+    opacity: 0.95;
+}
+
+.ingredient-card--beef {
+    background: linear-gradient(180deg, #D31F1F 0%, #A30F0F 100%);
+}
+
+.ingredient-card--bacon {
+    background: linear-gradient(180deg, #CB6A21 0%, #8F3A16 100%);
+}
+
+.ingredient-card--cheese {
+    background: linear-gradient(180deg, #E0B43C 0%, #C68C14 100%);
+}
+
+.ingredient-card--bun {
+    background: linear-gradient(180deg, #F2C474 0%, #C88A29 100%);
+}
+
+.ingredient-card--lettuce {
+    background: linear-gradient(180deg, #5EA24C 0%, #2F7C2F 100%);
+}
+
+.ingredient-card--tomato {
+    background: linear-gradient(180deg, #D74238 0%, #9B2621 100%);
+}
+
+.ingredients-section__pagination {
+    display: none;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+}
+
+.ingredients-section__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(45, 26, 14, 0.18);
+}
+
+.ingredients-section__dot--active {
+    background-color: var(--ingredients-text);
+}
+
+
+
+@keyframes slideUpFadeSmooth {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceInCard {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estados Iniciais */
+.ingredients-section__header,
+.ingredient-card {
+    opacity: 0;
+}
+
+/* Animação do Header */
+.ingredients-section__header.animate {
+    animation: slideUpFadeSmooth 1s ease-out forwards;
+}
+
+/* Animação dos Cards com Delay Escalonado */
+.ingredient-card.animate {
+    animation: bounceInCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Adicionando delays manuais para o efeito cascata */
+.ingredient-card:nth-child(1) { animation-delay: 0.1s; }
+.ingredient-card:nth-child(2) { animation-delay: 0.2s; }
+.ingredient-card:nth-child(3) { animation-delay: 0.3s; }
+.ingredient-card:nth-child(4) { animation-delay: 0.4s; }
+.ingredient-card:nth-child(5) { animation-delay: 0.5s; }
+.ingredient-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Efeito de hover para interatividade */
+.ingredient-card:hover {
+    transform: translateY(-5px) scale(1.03) !important;
+    box-shadow: 0 20px 50px rgba(45, 26, 14, 0.2);
+}
+
+@media (max-width: 1023px) {
+    .ingredients-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .ingredient-card {
+        min-width: min(72vw, 320px);
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+
+    .ingredients-section__pagination {
+        display: flex;
+    }
+}
+
+@media (max-width: 640px) {
+    .ingredients-section {
+        padding: 3.5rem 1rem;
+    }
+
+    .ingredients-section__title {
+        font-size: clamp(1.8rem, 6vw, 2.6rem);
+    }
+
+    .ingredient-card {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+
+/* Responsivo para mobile 425px */
+@media (max-width: 425px) {
+  .ingredients-section {
+    padding: 3rem 1rem;
+  }
+
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .ingredients-section__header {
+    margin-bottom: 2rem;
+  }
+
+  .ingredients-section__title {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    text-align: center;
+  }
+
+  .ingredients-section__description {
+    font-size: clamp(0.9rem, 1.5vw + 0.3rem, 1rem);
+    text-align: center;
+  }
+
+  
+  .ingredient-card {
+    padding: 2.75rem 3rem;
+    min-height: 244px;
+    min-width: 160px;
+  }
+
+  .ingredient-card__name {
+    font-size: 1.125rem;
+  }
+
+  .ingredient-card__info {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+}
