@@ -1,0 +1,299 @@
+/* ============================================ */
+/* Nosso Menu Section                           */
+/* ============================================ */
+
+.menu-section {
+    width: 100vw;
+    background: #502314;
+    padding: 5rem 1.25rem 6rem;
+    color: #ffffff;
+}
+
+.menu-section__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2.5rem;
+
+}
+
+/* ---- Cabeçalho ---- */
+.menu-section__header {
+    text-align: center;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.menu-section__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+}
+
+.menu-section__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+/* ---- Filtros ---- */
+.menu-section__filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.menu-filter {
+    background:#FFFFFF33;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.25rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.menu-filter:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+}
+
+.menu-filter.active {
+    background: #D62300;
+    border-color: #D62300;
+    color: #ffffff;
+}
+
+/* ---- Grid ---- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+/* ---- Card Flip ---- */
+.menu-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+}
+
+.menu-card.hidden {
+    display: none;
+}
+
+.menu-card__inner {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    padding: 1.5rem;
+    transform-style: preserve-3d;
+    transition: transform 0.55s ease;
+    border-radius: 1.25rem;
+    box-shadow: rgb(6, 7, 8) 0px 20px 30px -10px;
+}
+
+.menu-card.flipped .menu-card__inner {
+    transform: rotateY(180deg);
+}
+
+/* ---- Frente (branco com imagem) ---- */
+.menu-card__front,
+.menu-card__back {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.25rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.menu-card__front {
+    background: #ffffff;
+    gap: 0.75rem;
+}
+
+.menu-card__front img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
+
+.menu-card__name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #502314;
+    text-align: center;
+}
+
+/* ---- Verso (vermelho com descrição) ---- */
+.menu-card__back {
+    background: #D62300;
+    transform: rotateY(180deg);
+    gap: 0.85rem;
+    text-align: center;
+}
+
+.menu-card__back-title {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+}
+
+.menu-card__back-desc {
+    font-size: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+.menu-card__back-price {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 400;
+    color: #FBB900;
+}
+
+
+
+/* Estados iniciais */
+.menu-section__header,
+.menu-grid {
+    opacity: 0;
+}
+
+/* Animação do Header (Título e Subtítulo) */
+.menu-section__header.animate {
+    animation: slideUpFadeSmooth 0.8s ease-out forwards;
+}
+
+/* Animação do Grid (Fade In simples) */
+.menu-grid.animate {
+    animation: fadeInNormal 1s ease-in forwards;
+    animation-delay: 0.3s; /* Aparece logo após o título começar */
+}
+
+@keyframes fadeInNormal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Garante que os botões de filtro também acompanhem o cabeçalho */
+.menu-section__filters {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease-out;
+    transition-delay: 0.2s;
+}
+
+.menu-section__header.animate + .menu-section__filters {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+    .menu-section {
+        padding: 3.5rem 1rem 4rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .menu-filter {
+        font-size: 0.72rem;
+        padding: 0.45rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* Responsivo para mobile 425px */
+@media (max-width: 425px) {
+  .menu-section {
+    padding: 3rem 0.8rem 3.5rem;
+  }
+
+  .menu-section__inner {
+    gap: 2rem;
+  }
+
+  .menu-section__header {
+    gap: 0.4rem;
+  }
+
+  .menu-section__title {
+    font-size: clamp(2rem, 7vw, 3rem);
+    text-align: center;
+  }
+
+  .menu-section__subtitle {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .menu-section__filters {
+    gap: 0.5rem;
+  }
+
+  .menu-filter {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+    border: none;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 0rem;
+  }
+
+  .menu-card__inner {
+    width: 85%;
+    height: 85%;
+    padding: 1.2rem;
+  }
+
+  .menu-card__name {
+    font-size: 1rem;
+  }
+
+  .menu-card__back-title {
+    font-size: 1.5rem;
+  }
+
+  .menu-card__back-desc {
+    font-size: 0.9rem;
+  }
+
+  .menu-card__back-price {
+    font-size: 2rem;
+  }
+}
