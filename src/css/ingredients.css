@@ -240,6 +240,10 @@
 /* Responsivo para mobile 425px */
 @media (max-width: 425px) {
   .ingredients-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     padding: 3rem 1rem;
   }
 
